@@ -71,7 +71,7 @@
     <Compile Include="GalleryPage.xaml.cs">
       <DependentUpon>GalleryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Image.cs" />
+    <Compile Include="GalleryImage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
