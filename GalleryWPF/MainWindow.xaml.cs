@@ -20,21 +20,19 @@ namespace GalleryWPF
     public partial class MainWindow : Window
     {
         Gallery _gallery;
-        Grid _grid;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            GalleryImage gi = new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg");
+            this.Width = this.Height = 1200;
+           
+            _grMain.Width = this.Width - 20;
+            _grMain.Height = this.Height - 20;
 
+            GalleryPage gp = new GalleryPage();
 
-            _grid = new Grid();
-            _grid.Width = this.Width;
-            _grid.Height = this.Height;
-
-           this.AddChild(_grid);
-
-            _gallery = new Gallery(_grid);
+           _gallery = new Gallery(_grMain);
 
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
@@ -45,7 +43,7 @@ namespace GalleryWPF
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-        }
+}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +66,20 @@ namespace GalleryWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _gallery.ShowInGrid();
+           _gallery.ShowInGrid();
+        }
+
+        private void textBlock1_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
+     /*       ResourceDictionary fc = new ResourceDictionary();
+            fc.Source = new Uri("Style.xaml", UriKind.Relative);
+
+            this.Resources.Add("style",fc);*/
         }
     }
 }

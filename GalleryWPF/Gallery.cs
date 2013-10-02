@@ -21,34 +21,45 @@ namespace GalleryWPF
 
         public Gallery(Grid grid)
         {
+
             _grid = grid;
-            _cols = _grid.Width / (150 + _margin);
-            _rows = _grid.Height / (150 + _margin);
+            _grid.ShowGridLines = true;
+            _cols = _grid.Width / (GalleryImage.PREVIEW_SIZE);
+            _rows = _grid.Height / (GalleryImage.PREVIEW_SIZE);
+        }
+
+        public void SetRowsNCols()
+        {
+            for (int i = 0; i < _rows; i++)
+            {
+                _grid.RowDefinitions.Add(new RowDefinition());
+            }
+
+            for (int i = 0; i < _cols; i++)
+            {
+                _grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
         }
 
         public void ShowInGrid()
         {
-            Image curr;
+            StackPanel sp;
             int k = 0;
-            for (var i = 0; i < _rows && k < this.Count; i++)
-            {
-                _grid.RowDefinitions.Add(new RowDefinition());
-                for (var j = 0; j < _cols && k < this.Count; j++, k++)
-                {
-                    _grid.ColumnDefinitions.Add(new ColumnDefinition());
-                    curr = this[k].Image;
 
-                    Grid.SetRow(curr, i);                                                          
-                    Grid.SetColumn(curr, j);   
-                    _grid.Children.Add(curr);                                                       
+            SetRowsNCols();
+
+            for (int i = 0; i < _rows && k < this.Count; i++)
+            {
+                for (int j = 0; j < _cols && k < this.Count; j++, k++)
+                {
+                    sp = GalleryImage.MakeGalleryImage(this[k], _margin, "hi");
+
+                    Grid.SetRow(sp, i);
+                    Grid.SetColumn(sp, j);
+
+                    _grid.Children.Add(sp);
                 }
-            }                                                                                      
-                                                                                                   
-            for (var i = 0; i <2; i++)                                                   
-            {       
-                                                                          
-                                                              
-            }                                                                                      
+            }
         }
     }
 }

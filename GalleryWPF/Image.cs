@@ -11,26 +11,63 @@ namespace GalleryWPF
 {
     class GalleryImage
     {
-        public const int PREVIEW_SIZE = 150;
+        public static int PREVIEW_SIZE { get { return 250; } }
 
-        private Image _image;
+        private string _path;
+        private string _label;
+        private int _rate;
 
-        public static int Width { get { return PREVIEW_SIZE; } }
-        public static int Height { get { return PREVIEW_SIZE; } } 
-
-        public Image Image { get { return _image; } }
+        public string Path { get { return _path;  } }
 
         public GalleryImage(string path)
         {
-            _image = new Image();
-            _image.Source = BitMapImageFromPath(path);
-            _image.Width = PREVIEW_SIZE;
-            _image.Height = PREVIEW_SIZE;
+            _path = path;
         }
 
-        public BitmapImage BitMapImageFromPath(string path)
+        public GalleryImage(string path, string label): 
+            this( path )
+        {
+            _label = label;
+        }
+
+        public GalleryImage(string path, string label, int rate)
+        :this(path, label)
+        {
+            _rate = rate;
+        }
+
+        public static BitmapImage GetBitmapImageFromPath(string path)
         {
             return new BitmapImage(new Uri(path));
+        }
+
+        public static StackPanel MakeGalleryImage(
+            GalleryImage im,
+            double margin,
+            string label
+        )
+        {
+            Image i = new Image();            
+            i.Source = GalleryImage.GetBitmapImageFromPath(im.Path);
+            i.Width = i.Height = 200;
+           
+            StackPanel sp = new StackPanel();
+            sp.Width = sp.Height = PREVIEW_SIZE;
+            i.Margin = new Thickness(margin);
+
+            sp.Style = (Style)sp.FindResource("StackPanelStyle");
+
+            sp.Children.Add(i);
+
+            TextBlock tx = new TextBlock();
+            Border b = new Border();
+            sp.Children.Add(b);
+
+            tx.TextAlignment = TextAlignment.Center;
+            tx.Text = label;
+            sp.Children.Add(tx);
+
+            return sp;
         }
     }
 }
