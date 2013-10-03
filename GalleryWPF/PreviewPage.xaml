@@ -6,8 +6,26 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Page1">
+    <Page.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Grid.Background" Value="Black"></Setter>
+        </Style>
+        <Style TargetType="Image">
 
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="White"></Setter>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="Black" />
+
+            <Style.Triggers>
+                <Trigger Property="StackPanel.IsMouseOver" Value="True">
+                    <Setter Property="StackPanel.Background" Value="WhiteSmoke" ></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid Name="_previewGrid">
-        <Button Content="A" Width="100" Height="100" />
     </Grid>
 </Page>

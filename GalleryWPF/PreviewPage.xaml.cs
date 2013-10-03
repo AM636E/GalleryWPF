@@ -26,13 +26,16 @@ namespace GalleryWPF
             InitializeComponent();
         }
 
-        public PreviewPage(Gallery gallery)
+        public PreviewPage(Gallery gallery,double width, double height)
             :this()
         {
+            this.Width = width;
+            this.Height = height;
+
             this.Loaded += PreviewPage_Loaded;
 
-            _previewGrid.Width = this.Width - 20;
-            _previewGrid.Height = this.Height - 20;
+            _previewGrid.Width = this.Width ;
+            _previewGrid.Height = this.Height;
 
             GalleryPage gp = new GalleryPage();
 
@@ -48,14 +51,30 @@ namespace GalleryWPF
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
 
-            GalleryPage galpage = new GalleryPage();
+            this.SizeChanged += PreviewPage_SizeChanged;
+        }
 
-            this.NavigationService.Navigate(galpage);
+        public PreviewPage(Window owner, Gallery gallery, double width, double height)
+        :this(gallery, width, height)
+        {
+            owner.SizeChanged += PreviewPage_SizeChanged;
+        }
+
+        private void PreviewPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(sender is Window)
+            {
+                Window window = sender as Window;
+                this.Width = window.Width;
+                this.Height = window.Height;
+                _previewGrid.Width = this.Width ;
+                _previewGrid.Height = this.Height ;
+            }
+            _gallery.ShowInGrid();
         }
 
         private void PreviewPage_Loaded(object sender, RoutedEventArgs e)
         {
-            _gallery.ShowInGrid();
         }
     }
 }

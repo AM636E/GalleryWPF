@@ -41,9 +41,7 @@ namespace GalleryWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            PreviewPage p = new PreviewPage(this, _gallery, this.Width, this.Height);
-
-            _mainFrame.NavigationService.Navigate(p);
+            _mainFrame.NavigationService.Navigate(new PreviewPage(_gallery));
         }
 
         private void textBlock1_SourceUpdated(object sender, DataTransferEventArgs e)
