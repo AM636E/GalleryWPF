@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace GalleryWPF
 {
-    class GalleryImage
+    public class GalleryImage
     {
         public static int PREVIEW_SIZE { get { return 250; } }
 
         private string _path;
         private string _label;
         private int _rate;
+        private int _index;
+
+        public int Index { get { return _index; } set { _index = value;  } }
 
         public string Path { get { return _path;  } }
 
@@ -50,18 +58,17 @@ namespace GalleryWPF
             Image i = new Image();            
             i.Source = GalleryImage.GetBitmapImageFromPath(im.Path);
             i.Width = i.Height = 200;
-           
+
+            Border b = new Border();
+            b.BorderBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
             StackPanel sp = new StackPanel();
+            sp.Children.Add(b);
             sp.Width = sp.Height = PREVIEW_SIZE;
             i.Margin = new Thickness(margin);
-
-            sp.Style = (Style)sp.FindResource("StackPanelStyle");
 
             sp.Children.Add(i);
 
             TextBlock tx = new TextBlock();
-            Border b = new Border();
-            sp.Children.Add(b);
 
             tx.TextAlignment = TextAlignment.Center;
             tx.Text = label;

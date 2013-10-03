@@ -20,44 +20,51 @@ namespace GalleryWPF
     public partial class MainWindow : Window
     {
         Gallery _gallery;
+        ResourceDictionary _styles = new ResourceDictionary();
+        
 
         public MainWindow()
         {
             InitializeComponent();
 
             this.Width = this.Height = 1200;
-           
+           /*
             _grMain.Width = this.Width - 20;
             _grMain.Height = this.Height - 20;
 
             GalleryPage gp = new GalleryPage();
-
+            
            _gallery = new Gallery(_grMain);
+            
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
 
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-}
+            this.SizeChanged += MainWindow_SizeChanged;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hello");
+            GalleryPage galpage = new GalleryPage();
+           // this.NavigationService.Navigate((Object)galpage);
+            this.NavigationService.Navigate(galpage);*/
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_SizeChanged(Object sender, EventArgs args)
         {
-            MessageBox.Show("Hello");
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-
+            _mainFrame.Width = this.Width;
+            _mainFrame.Height = this.Height;
+            _mainFrame.NavigationService.Navigate(new PreviewPage());
+            _mainFrame.NavigationService.GoForward();
+            _mainFrame.NavigationService.GoBack();
+            _mainFrame.NavigationService.GoForward();
+            _mainFrame.NavigationService.Refresh();
+          /*  _grMain.Width = this.Width - 20;
+            _grMain.Height = this.Height - 20;
+            _gallery.ShowInGrid();*/
         }
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
@@ -66,7 +73,8 @@ namespace GalleryWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           _gallery.ShowInGrid();
+          
+        //   _gallery.ShowInGrid();
         }
 
         private void textBlock1_SourceUpdated(object sender, DataTransferEventArgs e)
