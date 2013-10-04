@@ -23,5 +23,10 @@ namespace GalleryWPF
         {
             InitializeComponent();
         }
+
+        public GalleryPage(Gallery gallery)
+        {
+
+        }
     }
 }

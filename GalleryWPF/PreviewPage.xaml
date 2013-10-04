@@ -18,10 +18,11 @@
         </Style>
         <Style TargetType="StackPanel">
             <Setter Property="Background" Value="Black" />
-
+            <Setter Property="TextBlock.Foreground" Value="White" />
             <Style.Triggers>
                 <Trigger Property="StackPanel.IsMouseOver" Value="True">
                     <Setter Property="StackPanel.Background" Value="WhiteSmoke" ></Setter>
+                    <Setter Property="TextBlock.Foreground" Value="Black" />
                 </Trigger>
             </Style.Triggers>
         </Style>
