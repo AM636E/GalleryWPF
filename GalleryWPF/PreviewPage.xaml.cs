@@ -52,6 +52,12 @@ namespace GalleryWPF
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
 
             this.SizeChanged += PreviewPage_SizeChanged;
+            this._gallery.ImageClicked += _gallery_ImageClicked;
+        }
+
+        void _gallery_ImageClicked(object sender, EventArgs e)
+        {
+            MessageBox.Show(_gallery.ClickedIndex.ToString());
         }
 
         public PreviewPage(Window owner, Gallery gallery, double width, double height)

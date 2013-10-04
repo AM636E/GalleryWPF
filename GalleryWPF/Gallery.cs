@@ -52,11 +52,11 @@ namespace GalleryWPF
             }            
         }
 
-
-
         public new void Add(GalleryImage i)
         {
             base.Add(i);
+            StackPanel sp = GalleryImage.MakeGalleryImage(this[k], _margin, "hi");
+            _img.Add(sp);
             if(OnAdd != null)
             {
                 OnAdd(this, EventArgs.Empty);
@@ -75,8 +75,10 @@ namespace GalleryWPF
                 for (int j = 0; j < _cols  && k < this.Count; j++, k++)
                 {
                     sp = GalleryImage.MakeGalleryImage(this[k], _margin, "hi");
-                    
-                    _img.Add(sp);
+
+                    sp.MouseLeftButtonDown += sp_MouseLeftButtonDown;
+
+                    _img.Add(sp);  
 
                     Grid.SetRow(sp, i);
                     Grid.SetColumn(sp, j);
@@ -84,6 +86,11 @@ namespace GalleryWPF
                     _grid.Children.Add(sp);
                 }
             }
+        }
+
+        void sp_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
         }
 
         List<StackPanel> _img = new List<StackPanel>();
@@ -96,14 +103,12 @@ namespace GalleryWPF
             }
         }
 
-
-
         private void ImageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             GalleryImage i = sender as GalleryImage;
-
+            MessageBox.Show("YEeaH!");
             _clickedImageIndex = this.IndexOf(i);
-
+            
             if(ImageClicked != null)
             {
                 ImageClicked(this, EventArgs.Empty);
