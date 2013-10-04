@@ -13,9 +13,14 @@ namespace GalleryWPF
     {
         private Grid _grid;
 
+        public event EventHandler ImageClicked;
+
         private double _rows;
         private double _cols;
         private double _margin = 5;
+        private int _clickedImageIndex;
+
+        public int ClickedIndex { get { return _clickedImageIndex; } }
 
         public event EventHandler OnAdd;
 
@@ -47,16 +52,16 @@ namespace GalleryWPF
             }            
         }
 
-        public void Add(GalleryImage i)
+
+
+        public new void Add(GalleryImage i)
         {
             base.Add(i);
             if(OnAdd != null)
             {
                 OnAdd(this, EventArgs.Empty);
             }
-        }
-
-        
+        }        
 
         public void ShowInGrid()
         {
@@ -95,7 +100,14 @@ namespace GalleryWPF
 
         private void ImageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            GalleryImage i = sender as GalleryImage;
+
+            _clickedImageIndex = this.IndexOf(i);
+
+            if(ImageClicked != null)
+            {
+                ImageClicked(this, EventArgs.Empty);
+            }
         }
     }
 }

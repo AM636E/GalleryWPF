@@ -19,14 +19,17 @@ namespace GalleryWPF
     /// </summary>
     public partial class GalleryPage : Page
     {
+        Gallery _gallery;
+
         public GalleryPage()
         {
             InitializeComponent();
         }
 
         public GalleryPage(Gallery gallery)
+         :this()
         {
-
+            _gallery = gallery;
         }
     }
 }
