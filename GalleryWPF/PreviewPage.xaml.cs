@@ -19,6 +19,8 @@ namespace GalleryWPF
     /// </summary>
     public partial class PreviewPage : Page
     {
+        public event EventHandler GalleryClicked;
+
         public Grid GrMain { get { return _previewGrid; } }
         Gallery _gallery;
         public PreviewPage()
@@ -26,21 +28,21 @@ namespace GalleryWPF
             InitializeComponent();
         }
 
-        public PreviewPage(Gallery gallery,double width, double height)
-            :this()
+        public PreviewPage(Gallery gallery, double width, double height)
+            : this()
         {
             this.Width = width;
             this.Height = height;
 
             this.Loaded += PreviewPage_Loaded;
 
-            _previewGrid.Width = this.Width ;
+            _previewGrid.Width = this.Width;
             _previewGrid.Height = this.Height;
 
             GalleryPage gp = new GalleryPage();
 
             _gallery = new Gallery(_previewGrid);
-            
+
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
             _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
@@ -57,24 +59,27 @@ namespace GalleryWPF
 
         void _gallery_ImageClicked(object sender, EventArgs e)
         {
-            MessageBox.Show(_gallery.ClickedIndex.ToString());
+            if (GalleryClicked != null)
+            {
+                GalleryClicked(this, EventArgs.Empty);
+            }
         }
 
         public PreviewPage(Window owner, Gallery gallery, double width, double height)
-        :this(gallery, width, height)
+            : this(gallery, width, height)
         {
             owner.SizeChanged += PreviewPage_SizeChanged;
         }
 
         private void PreviewPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(sender is Window)
+            if (sender is Window)
             {
                 Window window = sender as Window;
                 this.Width = window.Width;
                 this.Height = window.Height;
-                _previewGrid.Width = this.Width ;
-                _previewGrid.Height = this.Height ;
+                _previewGrid.Width = this.Width;
+                _previewGrid.Height = this.Height;
             }
             _gallery.ShowInGrid();
         }

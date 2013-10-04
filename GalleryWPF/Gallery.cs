@@ -57,6 +57,8 @@ namespace GalleryWPF
             base.Add(i);
             StackPanel sp = GalleryImage.MakeGalleryImage( i, _margin, "hi");
             _img.Add(sp);
+
+            sp.MouseLeftButtonDown += this.ImageClick;
             if(OnAdd != null)
             {
                 OnAdd(this, EventArgs.Empty);
@@ -101,9 +103,9 @@ namespace GalleryWPF
 
         private void ImageClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            GalleryImage i = sender as GalleryImage;
-            MessageBox.Show("YEeaH!");
-            _clickedImageIndex = this.IndexOf(i);
+            StackPanel i = sender as StackPanel;
+
+            _clickedImageIndex = _img.IndexOf(i);
             
             if(ImageClicked != null)
             {
