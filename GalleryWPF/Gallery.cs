@@ -55,7 +55,7 @@ namespace GalleryWPF
         public new void Add(GalleryImage i)
         {
             base.Add(i);
-            StackPanel sp = GalleryImage.MakeGalleryImage(this[k], _margin, "hi");
+            StackPanel sp = GalleryImage.MakeGalleryImage( i, _margin, "hi");
             _img.Add(sp);
             if(OnAdd != null)
             {
@@ -74,11 +74,7 @@ namespace GalleryWPF
             {
                 for (int j = 0; j < _cols  && k < this.Count; j++, k++)
                 {
-                    sp = GalleryImage.MakeGalleryImage(this[k], _margin, "hi");
-
-                    sp.MouseLeftButtonDown += sp_MouseLeftButtonDown;
-
-                    _img.Add(sp);  
+                    sp = _img[k];
 
                     Grid.SetRow(sp, i);
                     Grid.SetColumn(sp, j);
