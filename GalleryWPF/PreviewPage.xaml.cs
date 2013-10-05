@@ -39,26 +39,19 @@ namespace GalleryWPF
             _previewGrid.Width = this.Width;
             _previewGrid.Height = this.Height;
 
-            GalleryPage gp = new GalleryPage();
+            _gallery = gallery;
 
-            _gallery = new Gallery(_previewGrid);
-
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
-            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Grid = _previewGrid;
 
             this.SizeChanged += PreviewPage_SizeChanged;
             this._gallery.ImageClicked += _gallery_ImageClicked;
         }
 
+        public Gallery Gallery { get { return _gallery; } }
+
         void _gallery_ImageClicked(object sender, EventArgs e)
         {
+            _previewGrid.Children.Clear();
             if (GalleryClicked != null)
             {
                 GalleryClicked(this, EventArgs.Empty);

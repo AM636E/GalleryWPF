@@ -7,7 +7,46 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="GalleryPage">
 
-    <Grid>
-        
+    <Grid Name="_galleryGrid" ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Name="_imageContainer" Grid.Row="0" ShowGridLines="True" Margin="0,0,0,5">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Name="_nextImage" Grid.Column="0" Margin="50,50,100,50"></Image>
+            <Image Name="_showedImage" Grid.Column="1"></Image>
+            <Image Name="_prevImage" Grid.Column="2" Margin="50,50,100,50"></Image>
+
+        </Grid>
+        <Grid Name="_controls" Grid.Row="1" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="_left" Grid.Column="0" Grid.RowSpan="3" Click="_left_Click" Grid.ColumnSpan="2" Margin="0,0,138,0">
+                Left
+            </Button>
+            <Button Name="_right" Grid.Column="1" Grid.RowSpan="3">
+                Right
+            </Button>
+        </Grid>
     </Grid>
 </Page>

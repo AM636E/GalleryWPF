@@ -118,17 +118,6 @@ namespace GalleryWPF
         public ImageSource GetImage(int way)
         {
             int tmp = _currImage + way;
-
-            if(tmp < 0 )
-            {
-                tmp = this.Count - 1;
-            }
-            if(tmp >= this.Count)
-            {
-                tmp = 0;
-            }
-
-            return GalleryImage.GetBitmapImageFromPath(this[tmp].Path);
         }
 
         void sp_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

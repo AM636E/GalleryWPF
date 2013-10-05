@@ -28,6 +28,18 @@ namespace GalleryWPF
             InitializeComponent();
 
             this.Width = this.Height = 1200;
+
+            _gallery = new Gallery();
+
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\question.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
+            _gallery.Add(new GalleryImage(@"D:\GitHub\HTML_CSS_JAVASCRIPT\task3\memory_puzzle\images\2.jpg"));
         }
 
         private void MainWindow_SizeChanged(Object sender, EventArgs args)
@@ -42,18 +54,15 @@ namespace GalleryWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             PreviewPage p = new PreviewPage(this, _gallery, this.Width, this.Height);
-
+            p.GalleryClicked += p_GalleryClicked;
             _mainFrame.NavigationService.Navigate(p);
         }
 
-        private void textBlock1_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void p_GalleryClicked(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            GalleryPage page = new GalleryPage(_gallery, this.Width, this.Height);
+            _mainFrame.NavigationService.Navigate(page);
         }
     }
 }
